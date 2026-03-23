@@ -24,6 +24,7 @@ public:
 	void operator()(void*);
 
 	void* GetCode() const;
+	void* GetWritableCode() const;
 	size_t GetSize() const;
 
 	void BeginModify();
@@ -36,6 +37,7 @@ private:
 	void Reset();
 
 	void* m_code;
+	void* m_writable = nullptr; // Non-null when dual-mapped (Apple ARM)
 	size_t m_size;
 #if defined(__EMSCRIPTEN__)
 	emscripten::val m_wasmModule;
